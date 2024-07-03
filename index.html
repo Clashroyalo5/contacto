@@ -1,13 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-Transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="utf-8" lang="utf-8" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
+<title>PON Home Gateway</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="style/e8c.css" type="text/css" rel="stylesheet" />
+<link href="style/other.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="script/common.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+var X_Username = "";
+XUsername = "admin";
+var XPasswdTip = '';
+var XHasLogin = '0';
+var localAccount = '0';
+var region = "GENERAL";
+
+
+var ont_status = 99;
+var ont_result = 99;
+var ont_limit  = 10;
+var ont_times  = 0;
+var reg_status = 0;
+
+var lang="0";
+
+ont_status = 99;
+ont_result = 99;
+ont_times  = 0;
+ont_limit  = 10;
+reg_status = 0;
+re_registertime = 0;
+var display_floid = '1';
+var set_loid_result = '0';
+
+	 lang="0";
+
+
+function WebInit()
+{
+	$S("XWebPageName", "devinfo");
+	//$S("username", XUsername);
+	$("username").focus();
+	if (XHasLogin == 1 && localAccount == 1) {
+		$("div_login_stop").style.display = "block";
+		$("div_login_background").style.display = "none";
+	} else {
+		$("div_login_stop").style.display = "none";
+		$("div_login_background").style.display = "block";
+		
+		var config = {
+				vx : 4,
+				vy : 4,
+				height : 2,
+				width : 2,
+				count : 100,
+				color : "121, 162, 185",
+				stroke : "100, 200, 180",
+				dist : 6000,
+				e_dist : 20000,
+				max_conn : 10
+			}
+			CanvasParticle(config);
+	}
+
+	if (navigator.appVersion.indexOf("MSIE 6.0") != -1)
+	{
+		//$("x_foot5").style.width = 24;
+	}
+	$("lang_sel").value=lang;
+}
+
+
+function languageOnChange()
+{
+	$S("XWebPageName", "login");
+	$("username").disabled = true;
+	$("password").disabled = true;
+	$("XForm").submit();
+}
+
+function OnReset()
+{
+	$S("username", "");
+	$S("password", "");
+}
+
+function OnLogin()
+{
+	if ($("username").value.length == 0)
+	{
+		alert("Please enter user name!");
+		$("username").focus;
+		return;
+	}
+	if ($("password").value.length == 0)
+	{
+		alert("Please enter password!");
+		$("password").focus;
+		return;
+	}
+	$("lang_sel").disabled = true;
+	$("XForm").submit();
+}
+
+function Ondefault()
+{
+	window.location.href = "reg_default.html";
+}
+
+function OnEnter(e)
+{
+        var     k = 0;
+
+        if (window.event)
+        {
+                k = e.keyCode;
+        }
+        else if (e.which)
+        {
+                k = e.which;
+        }
+
+        if (k == 13)
+        {
+		OnLogin();
+        }
+}
+
+function OnReg()
+{
+  if( 1 == ont_result  )
+  {  
+    if(region  == "SC")
+    {
+    	Ondefault();
+    }
+    else
+    	alert("The device has been registered successfully and no further registration is required.");
+    return ;
+	/*if (ont_status == 0)
+	{
+		if (ont_result == 0 || ont_result == 1)
+		{
+			alert("The device has been registered successfully and no further registration is required.");
+			return;
+		}
+	}
+	if (ont_status == 5)
+	{
+		alert("The device has been registered successfully and no further registration is required.");
+		return;
+	}*/
+   }
+	window.top.location.href = "/floid.html";
+	return;
+}
+
+function OnUserEnter(e)
+{
+        var     k = 0;
+
+        if (window.event)
+        {
+                k = e.keyCode;
+        }
+        else if (e.which)
+        {
+                k = e.which;
+        }
+
+        if (k == 13)
+        {
+		$("password").focus();
+        }
+}
+
+//]]>
+</script>
 </head>
-<body>
-    <h1><a>anjoisa172011@gmail.com</a></h1>
-    <h1><a href="https://discord.gg/h4D5gmERx8" target="_blank">Mi Servidor de Discord</a></h1>
-    <h1><a href="https://api.whatsapp.com/send/?phone=%2B573025881859&text&type=phone_number&app_absent=0" target="_blank">WhatssApp</a></h1>
+
+<body onload="WebInit();">
+
+<div id="div_login_stop" style="display:none">
+	<div style="height: 50px"></div>
+	<div style="height: 50px"></div>
+	<h2>Other users are in login status. Please log in again after other users exit!</h2>
+</div>
+
+<div id="div_login_background" class="page">
+	<div class="loginwarrp">
+		<div class="logo_title">Clashroyalo5</div>
+		<div class="login_form">
+		<form id="XForm" name="XForm" method="post" action="/GponForm/LoginForm">
+			<input type="hidden" id="XWebPageName" name="XWebPageName" value="" />
+			<ul class="login-item">
+				<span style="font-weight:bold"><h1><a href="https://discord.gg/h4D5gmERx8" target="_blank">Mi Servidor de Discord</a></h1></span>&nbsp;&nbsp;&nbsp;
+			</ul>
+			<ul class="login-item">
+				<span style="font-weight:bold"><h1><a href="https://api.whatsapp.com/send/?phone=%2B573025881859&text&type=phone_number&app_absent=0" target="_blank">WhatssApp</a></h1></span>
+			</ul>
+			<ul class="login-item">
+				<font size="3" face="verdana">Eres gay?</font>&nbsp;&nbsp;&nbsp;
+				<select id="lang_sel" name="lang_sel" style="width:87px;" onchange="languageOnChange();">
+					<option value="0">Elige puto</option>
+					<option value="2" id="XS1">Si</option>
+					<option value="0" id="XS2">Si</option>
+				</select>
+			</ul>
+		</form>
+		</div>
+	</div>
+</div>
 </body>
 </html>

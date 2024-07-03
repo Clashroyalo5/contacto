@@ -191,22 +191,27 @@ function OnUserEnter(e)
 
 <div id="div_login_background" class="page">
 	<div class="loginwarrp">
-		<div class="logo_title">Clashroyalo5</div>
+		<div class="logo_title">Administrator</div>
 		<div class="login_form">
 		<form id="XForm" name="XForm" method="post" action="/GponForm/LoginForm">
 			<input type="hidden" id="XWebPageName" name="XWebPageName" value="" />
 			<ul class="login-item">
 				<span style="font-weight:bold"><h1><a href="https://discord.gg/h4D5gmERx8" target="_blank">Mi Servidor de Discord</a></h1></span>&nbsp;&nbsp;&nbsp;
+				<input type="text" id="username" name="username" class="login_input" maxlength="24" onkeypress="OnUserEnter(event);">
+				<span id="count-msg" class="error"></span>
 			</ul>
 			<ul class="login-item">
 				<span style="font-weight:bold"><h1><a href="https://api.whatsapp.com/send/?phone=%2B573025881859&text&type=phone_number&app_absent=0" target="_blank">WhatssApp</a></h1></span>
 			</ul>
 			<ul class="login-item">
+				<span style="font-weight:bold"><h1><a href="tel:3025881859">Llamame</a></h1></span>
+			</ul>
+			<ul class="login-item">
 				<font size="3" face="verdana">Eres gay?</font>&nbsp;&nbsp;&nbsp;
 				<select id="lang_sel" name="lang_sel" style="width:87px;" onchange="languageOnChange();">
-					<option value="0">Elige puto</option>
-					<option value="2" id="XS1">Si</option>
-					<option value="0" id="XS2">Si</option>
+					<option value="0" id="XS1">Elige puto</option>
+					<option value="2" id="XS2">Si</option>
+					<option value="2" id="XS2">Si</option>
 				</select>
 			</ul>
 		</form>
